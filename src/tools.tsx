@@ -80,6 +80,12 @@ export default [
     category: "utility",
   },
   {
+    title: "Color Code Converter",
+    route: "/color-code-converter",
+    icon: SolarIconSet.RefreshCircle,
+    category: "image"
+  },
+  {
     title: "Password Generator",
     route: "/password-generator",
     icon: SolarIconSet.LockPassword,
