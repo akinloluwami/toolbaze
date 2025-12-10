@@ -28,7 +28,7 @@ function App() {
 
     try {
       // Submit to Formspree
-      const response = await fetch("https://api.formdrop.co/f/3983bb880", {
+      const response = await fetch("https://api.formdrop.co/f/3983bb88", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
