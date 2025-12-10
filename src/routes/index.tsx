@@ -28,22 +28,16 @@ function App() {
 
     try {
       // Submit to Formspree
-      const response = await fetch(
-        "https://api.formdrop.co/collect?key=fd_pk_89d319e87e2d40",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            bucket: "Toolbaze Tool Requests",
-            data: {
-              "Tool name": toolName,
-              "Tool description": toolDescription,
-            },
-          }),
+      const response = await fetch("https://formdrop.co/f/3983bb880", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          "Tool name": toolName,
+          "Tool description": toolDescription,
+        }),
+      });
 
       if (response.ok) {
         // Track in PostHog
