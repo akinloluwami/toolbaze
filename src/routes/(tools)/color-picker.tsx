@@ -84,7 +84,16 @@ function RouteComponent() {
     };
 
     const removeFromPalette = (idx: number) => {
-        setPalette((prev) => prev.filter((_, i) => i !== idx));
+        setPalette((prev) => {
+            const next = prev.filter((_, i) => i !== idx);
+            setSelectedPaletteIndex((cur) => {
+                if (cur === null) return null;
+                if (cur === idx) return null;
+                if (cur > idx) return cur - 1;
+                return cur;
+            });
+            return next;
+        });
     };
 
     return (

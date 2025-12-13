@@ -50,8 +50,8 @@ export const ColorChip = ({ color, onDelete, onClick, className, showCode = true
                 </span>
             )}
 
-            {/* Actions */}
-            <div className="flex items-center gap-2 ml-2">
+            {/* Actions (stop click bubbling to avoid selecting the chip when clicking an action) */}
+            <div className="flex items-center gap-2 ml-2" onClick={(e) => e.stopPropagation()}>
                 <CopyButton textToCopy={color} variant="icon" size="md" className="p-1" />
                 {onDelete && (
                     <DeleteButton onClick={onDelete} variant="icon" size="md" className="p-1" />
