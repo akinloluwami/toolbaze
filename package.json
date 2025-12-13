@@ -43,6 +43,7 @@
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.2.0",
+    "@types/colorthief": "^2.6.0",
     "@types/nearest-color": "^0.4.1",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
