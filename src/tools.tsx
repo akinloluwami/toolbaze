@@ -79,4 +79,10 @@ export default [
     icon: SolarIconSet.RefreshCircle,
     category: "utility",
   },
+  {
+    title: "Color Code Converter",
+    route: "/color-code-converter",
+    icon: SolarIconSet.Hashtag,
+    category: "image"
+  }
 ] satisfies Tool[];
