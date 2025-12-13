@@ -20,6 +20,7 @@ import { Route as toolsImagePaletteGeneratorRouteImport } from './routes/(tools)
 import { Route as toolsImageCropperRouteImport } from './routes/(tools)/image-cropper'
 import { Route as toolsImageCompressorRouteImport } from './routes/(tools)/image-compressor'
 import { Route as toolsDiffCheckerRouteImport } from './routes/(tools)/diff-checker'
+import { Route as toolsCsvToJsonRouteImport } from './routes/(tools)/csv-to-json'
 import { Route as toolsColorPickerRouteImport } from './routes/(tools)/color-picker'
 
 const IndexRoute = IndexRouteImport.update({
@@ -78,6 +79,11 @@ const toolsDiffCheckerRoute = toolsDiffCheckerRouteImport.update({
   path: '/diff-checker',
   getParentRoute: () => rootRouteImport,
 } as any)
+const toolsCsvToJsonRoute = toolsCsvToJsonRouteImport.update({
+  id: '/(tools)/csv-to-json',
+  path: '/csv-to-json',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const toolsColorPickerRoute = toolsColorPickerRouteImport.update({
   id: '/(tools)/color-picker',
   path: '/color-picker',
@@ -87,6 +93,7 @@ const toolsColorPickerRoute = toolsColorPickerRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/color-picker': typeof toolsColorPickerRoute
+  '/csv-to-json': typeof toolsCsvToJsonRoute
   '/diff-checker': typeof toolsDiffCheckerRoute
   '/image-compressor': typeof toolsImageCompressorRoute
   '/image-cropper': typeof toolsImageCropperRoute
@@ -101,6 +108,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/color-picker': typeof toolsColorPickerRoute
+  '/csv-to-json': typeof toolsCsvToJsonRoute
   '/diff-checker': typeof toolsDiffCheckerRoute
   '/image-compressor': typeof toolsImageCompressorRoute
   '/image-cropper': typeof toolsImageCropperRoute
@@ -116,6 +124,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/(tools)/color-picker': typeof toolsColorPickerRoute
+  '/(tools)/csv-to-json': typeof toolsCsvToJsonRoute
   '/(tools)/diff-checker': typeof toolsDiffCheckerRoute
   '/(tools)/image-compressor': typeof toolsImageCompressorRoute
   '/(tools)/image-cropper': typeof toolsImageCropperRoute
@@ -132,6 +141,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/color-picker'
+    | '/csv-to-json'
     | '/diff-checker'
     | '/image-compressor'
     | '/image-cropper'
@@ -146,6 +156,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/color-picker'
+    | '/csv-to-json'
     | '/diff-checker'
     | '/image-compressor'
     | '/image-cropper'
@@ -160,6 +171,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/(tools)/color-picker'
+    | '/(tools)/csv-to-json'
     | '/(tools)/diff-checker'
     | '/(tools)/image-compressor'
     | '/(tools)/image-cropper'
@@ -175,6 +187,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   toolsColorPickerRoute: typeof toolsColorPickerRoute
+  toolsCsvToJsonRoute: typeof toolsCsvToJsonRoute
   toolsDiffCheckerRoute: typeof toolsDiffCheckerRoute
   toolsImageCompressorRoute: typeof toolsImageCompressorRoute
   toolsImageCropperRoute: typeof toolsImageCropperRoute
@@ -266,6 +279,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof toolsDiffCheckerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(tools)/csv-to-json': {
+      id: '/(tools)/csv-to-json'
+      path: '/csv-to-json'
+      fullPath: '/csv-to-json'
+      preLoaderRoute: typeof toolsCsvToJsonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/(tools)/color-picker': {
       id: '/(tools)/color-picker'
       path: '/color-picker'
@@ -279,6 +299,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   toolsColorPickerRoute: toolsColorPickerRoute,
+  toolsCsvToJsonRoute: toolsCsvToJsonRoute,
   toolsDiffCheckerRoute: toolsDiffCheckerRoute,
   toolsImageCompressorRoute: toolsImageCompressorRoute,
   toolsImageCropperRoute: toolsImageCropperRoute,

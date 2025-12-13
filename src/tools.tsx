@@ -79,4 +79,10 @@ export default [
     icon: SolarIconSet.RefreshCircle,
     category: "utility",
   },
+  {
+    title: "CSV to JSON Converter",
+    route: "/csv-to-json",
+    icon: SolarIconSet.File,
+    category: "utility",
+  },
 ] satisfies Tool[];
