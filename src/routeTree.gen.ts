@@ -15,6 +15,7 @@ import { Route as toolsVideoTrimmerRouteImport } from './routes/(tools)/video-tr
 import { Route as toolsUuidGeneratorRouteImport } from './routes/(tools)/uuid-generator'
 import { Route as toolsUnitConverterRouteImport } from './routes/(tools)/unit-converter'
 import { Route as toolsTextCaseConverterRouteImport } from './routes/(tools)/text-case-converter'
+import { Route as toolsPasswordGeneratorRouteImport } from './routes/(tools)/password-generator'
 import { Route as toolsLoremIpsumRouteImport } from './routes/(tools)/lorem-ipsum'
 import { Route as toolsImagePaletteGeneratorRouteImport } from './routes/(tools)/image-palette-generator'
 import { Route as toolsImageCropperRouteImport } from './routes/(tools)/image-cropper'
@@ -50,6 +51,11 @@ const toolsUnitConverterRoute = toolsUnitConverterRouteImport.update({
 const toolsTextCaseConverterRoute = toolsTextCaseConverterRouteImport.update({
   id: '/(tools)/text-case-converter',
   path: '/text-case-converter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const toolsPasswordGeneratorRoute = toolsPasswordGeneratorRouteImport.update({
+  id: '/(tools)/password-generator',
+  path: '/password-generator',
   getParentRoute: () => rootRouteImport,
 } as any)
 const toolsLoremIpsumRoute = toolsLoremIpsumRouteImport.update({
@@ -92,6 +98,7 @@ export interface FileRoutesByFullPath {
   '/image-cropper': typeof toolsImageCropperRoute
   '/image-palette-generator': typeof toolsImagePaletteGeneratorRoute
   '/lorem-ipsum': typeof toolsLoremIpsumRoute
+  '/password-generator': typeof toolsPasswordGeneratorRoute
   '/text-case-converter': typeof toolsTextCaseConverterRoute
   '/unit-converter': typeof toolsUnitConverterRoute
   '/uuid-generator': typeof toolsUuidGeneratorRoute
@@ -106,6 +113,7 @@ export interface FileRoutesByTo {
   '/image-cropper': typeof toolsImageCropperRoute
   '/image-palette-generator': typeof toolsImagePaletteGeneratorRoute
   '/lorem-ipsum': typeof toolsLoremIpsumRoute
+  '/password-generator': typeof toolsPasswordGeneratorRoute
   '/text-case-converter': typeof toolsTextCaseConverterRoute
   '/unit-converter': typeof toolsUnitConverterRoute
   '/uuid-generator': typeof toolsUuidGeneratorRoute
@@ -121,6 +129,7 @@ export interface FileRoutesById {
   '/(tools)/image-cropper': typeof toolsImageCropperRoute
   '/(tools)/image-palette-generator': typeof toolsImagePaletteGeneratorRoute
   '/(tools)/lorem-ipsum': typeof toolsLoremIpsumRoute
+  '/(tools)/password-generator': typeof toolsPasswordGeneratorRoute
   '/(tools)/text-case-converter': typeof toolsTextCaseConverterRoute
   '/(tools)/unit-converter': typeof toolsUnitConverterRoute
   '/(tools)/uuid-generator': typeof toolsUuidGeneratorRoute
@@ -137,6 +146,7 @@ export interface FileRouteTypes {
     | '/image-cropper'
     | '/image-palette-generator'
     | '/lorem-ipsum'
+    | '/password-generator'
     | '/text-case-converter'
     | '/unit-converter'
     | '/uuid-generator'
@@ -151,6 +161,7 @@ export interface FileRouteTypes {
     | '/image-cropper'
     | '/image-palette-generator'
     | '/lorem-ipsum'
+    | '/password-generator'
     | '/text-case-converter'
     | '/unit-converter'
     | '/uuid-generator'
@@ -165,6 +176,7 @@ export interface FileRouteTypes {
     | '/(tools)/image-cropper'
     | '/(tools)/image-palette-generator'
     | '/(tools)/lorem-ipsum'
+    | '/(tools)/password-generator'
     | '/(tools)/text-case-converter'
     | '/(tools)/unit-converter'
     | '/(tools)/uuid-generator'
@@ -180,6 +192,7 @@ export interface RootRouteChildren {
   toolsImageCropperRoute: typeof toolsImageCropperRoute
   toolsImagePaletteGeneratorRoute: typeof toolsImagePaletteGeneratorRoute
   toolsLoremIpsumRoute: typeof toolsLoremIpsumRoute
+  toolsPasswordGeneratorRoute: typeof toolsPasswordGeneratorRoute
   toolsTextCaseConverterRoute: typeof toolsTextCaseConverterRoute
   toolsUnitConverterRoute: typeof toolsUnitConverterRoute
   toolsUuidGeneratorRoute: typeof toolsUuidGeneratorRoute
@@ -229,6 +242,13 @@ declare module '@tanstack/react-router' {
       path: '/text-case-converter'
       fullPath: '/text-case-converter'
       preLoaderRoute: typeof toolsTextCaseConverterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(tools)/password-generator': {
+      id: '/(tools)/password-generator'
+      path: '/password-generator'
+      fullPath: '/password-generator'
+      preLoaderRoute: typeof toolsPasswordGeneratorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/(tools)/lorem-ipsum': {
@@ -284,6 +304,7 @@ const rootRouteChildren: RootRouteChildren = {
   toolsImageCropperRoute: toolsImageCropperRoute,
   toolsImagePaletteGeneratorRoute: toolsImagePaletteGeneratorRoute,
   toolsLoremIpsumRoute: toolsLoremIpsumRoute,
+  toolsPasswordGeneratorRoute: toolsPasswordGeneratorRoute,
   toolsTextCaseConverterRoute: toolsTextCaseConverterRoute,
   toolsUnitConverterRoute: toolsUnitConverterRoute,
   toolsUuidGeneratorRoute: toolsUuidGeneratorRoute,
