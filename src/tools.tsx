@@ -79,4 +79,10 @@ export default [
     icon: SolarIconSet.RefreshCircle,
     category: "utility",
   },
+  {
+    title: "Password Generator",
+    route: "/password-generator",
+    icon: SolarIconSet.LockPassword,
+    category: "utility",
+  },
 ] satisfies Tool[];
