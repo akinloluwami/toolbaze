@@ -25,8 +25,6 @@ interface ColorConversion {
 }
 
 
-// 'toBase' will convert to the base format will connects all colors {r,g,b,a}
-// 'fromBase' will convert from the base({r,g,b,a}) to any color format
 const colorFormats: Record<string, ColorConversion> = {
   hex: {
     name: "HEX",
@@ -34,6 +32,8 @@ const colorFormats: Record<string, ColorConversion> = {
     toBase: (input) => {
       const hex = input.replace('#', '').trim();
       if (hex.length !== 6 && hex.length !== 8) return null;
+      
+      if (!/^[0-9A-Fa-f]+$/.test(hex)) return null;
       
       const r = parseInt(hex.substring(0, 2), 16);
       const g = parseInt(hex.substring(2, 4), 16);
@@ -94,7 +94,11 @@ const colorFormats: Record<string, ColorConversion> = {
       const h = parseInt(match[1]) / 360;
       const s = parseInt(match[2]) / 100;
       const l = parseInt(match[3]) / 100;
-      const a = match[4] ? Math.round(parseFloat(match[4]) * 100) / 100 : 1;
+      const a = match[4] ? parseFloat(match[4]) : 1;
+      
+      if (a < 0 || a > 1) return null;
+      
+      const alphaRounded = Math.round(a * 100) / 100;
       
       let r, g, b;
       
@@ -121,7 +125,7 @@ const colorFormats: Record<string, ColorConversion> = {
         r: Math.round(r * 255),
         g: Math.round(g * 255),
         b: Math.round(b * 255),
-        a
+        a: alphaRounded
       };
     },
     fromBase: (color) => {
@@ -202,7 +206,6 @@ function RouteComponent() {
   };
 
   return  <ContentLayout title="Color Code Converter">
-
      <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-2">From:</label>
@@ -226,14 +229,9 @@ function RouteComponent() {
                 ))}
               </select>
                   </div>
-
-
-
                   </div>
 
-
-                   {/* Results Section */}
-          {Object.keys(results).length > 0 && (
+                   {Object.keys(results).length > 0 && (
             <div className="space-y-3 mt-6">
               <h3 className="text-base sm:text-lg font-semibold">
                 Converted Values:
@@ -258,8 +256,6 @@ function RouteComponent() {
               </div>
             </div>
           )}
-
-
           {!inputValue && (
             <div className="text-center py-8 text-gray-400">
               <p className="text-base sm:text-lg px-4">
@@ -268,7 +264,7 @@ function RouteComponent() {
             </div>
           )}
 
-                  </div>
+          </div>
                   
   </ContentLayout>
 }
