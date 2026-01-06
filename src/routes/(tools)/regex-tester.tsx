@@ -88,6 +88,9 @@ function RouteComponent() {
         const globalRegex = new RegExp(pattern, flagString);
         while ((match = globalRegex.exec(testString)) !== null) {
           allMatches.push(match);
+          if (match.index === globalRegex.lastIndex) {
+            globalRegex.lastIndex++;
+          }
           if (!flags.g) break;
         }
         return {

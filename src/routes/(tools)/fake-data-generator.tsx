@@ -169,10 +169,19 @@ function RouteComponent() {
     } else {
       // CSV format
       const headers = fields.map((f) => f.name).filter((n) => n.trim());
+      const escapeCSV = (value: any) => {
+        const str = String(value ?? "");
+        if (str.includes(",") || str.includes('"') || str.includes("\n")) {
+          return `"${str.replace(/"/g, '""')}"`;
+        }
+        return str;
+      };
+
+      const headerRow = headers.map(escapeCSV).join(",");
       const rows = generatedData.map((record) =>
-        headers.map((h) => JSON.stringify(record[h] ?? "")).join(",")
+        headers.map((h) => escapeCSV(record[h])).join(",")
       );
-      return [headers.join(","), ...rows].join("\n");
+      return [headerRow, ...rows].join("\n");
     }
   };
 
