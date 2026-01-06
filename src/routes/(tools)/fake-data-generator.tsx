@@ -202,7 +202,7 @@ function RouteComponent() {
             <h3 className="text-lg font-semibold">Configure Fields</h3>
             <Button onClick={addField} className="flex items-center gap-2">
               <Plus size={16} />
-              Add Field
+              Add
             </Button>
           </div>
 

@@ -187,7 +187,7 @@ function RouteComponent() {
                 value={pattern}
                 onChange={(e) => setPattern(e.target.value)}
                 placeholder="Enter your regex pattern (e.g., \d{3}-\d{4})"
-                className="font-mono"
+                className="font-mono w-full"
               />
             </div>
 
