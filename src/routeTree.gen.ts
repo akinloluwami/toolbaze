@@ -15,11 +15,13 @@ import { Route as toolsVideoTrimmerRouteImport } from './routes/(tools)/video-tr
 import { Route as toolsUuidGeneratorRouteImport } from './routes/(tools)/uuid-generator'
 import { Route as toolsUnitConverterRouteImport } from './routes/(tools)/unit-converter'
 import { Route as toolsTextCaseConverterRouteImport } from './routes/(tools)/text-case-converter'
+import { Route as toolsRegexTesterRouteImport } from './routes/(tools)/regex-tester'
 import { Route as toolsPasswordGeneratorRouteImport } from './routes/(tools)/password-generator'
 import { Route as toolsLoremIpsumRouteImport } from './routes/(tools)/lorem-ipsum'
 import { Route as toolsImagePaletteGeneratorRouteImport } from './routes/(tools)/image-palette-generator'
 import { Route as toolsImageCropperRouteImport } from './routes/(tools)/image-cropper'
 import { Route as toolsImageCompressorRouteImport } from './routes/(tools)/image-compressor'
+import { Route as toolsFakeDataGeneratorRouteImport } from './routes/(tools)/fake-data-generator'
 import { Route as toolsDiffCheckerRouteImport } from './routes/(tools)/diff-checker'
 import { Route as toolsColorPickerRouteImport } from './routes/(tools)/color-picker'
 
@@ -53,6 +55,11 @@ const toolsTextCaseConverterRoute = toolsTextCaseConverterRouteImport.update({
   path: '/text-case-converter',
   getParentRoute: () => rootRouteImport,
 } as any)
+const toolsRegexTesterRoute = toolsRegexTesterRouteImport.update({
+  id: '/(tools)/regex-tester',
+  path: '/regex-tester',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const toolsPasswordGeneratorRoute = toolsPasswordGeneratorRouteImport.update({
   id: '/(tools)/password-generator',
   path: '/password-generator',
@@ -79,6 +86,11 @@ const toolsImageCompressorRoute = toolsImageCompressorRouteImport.update({
   path: '/image-compressor',
   getParentRoute: () => rootRouteImport,
 } as any)
+const toolsFakeDataGeneratorRoute = toolsFakeDataGeneratorRouteImport.update({
+  id: '/(tools)/fake-data-generator',
+  path: '/fake-data-generator',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const toolsDiffCheckerRoute = toolsDiffCheckerRouteImport.update({
   id: '/(tools)/diff-checker',
   path: '/diff-checker',
@@ -94,11 +106,13 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/color-picker': typeof toolsColorPickerRoute
   '/diff-checker': typeof toolsDiffCheckerRoute
+  '/fake-data-generator': typeof toolsFakeDataGeneratorRoute
   '/image-compressor': typeof toolsImageCompressorRoute
   '/image-cropper': typeof toolsImageCropperRoute
   '/image-palette-generator': typeof toolsImagePaletteGeneratorRoute
   '/lorem-ipsum': typeof toolsLoremIpsumRoute
   '/password-generator': typeof toolsPasswordGeneratorRoute
+  '/regex-tester': typeof toolsRegexTesterRoute
   '/text-case-converter': typeof toolsTextCaseConverterRoute
   '/unit-converter': typeof toolsUnitConverterRoute
   '/uuid-generator': typeof toolsUuidGeneratorRoute
@@ -109,11 +123,13 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/color-picker': typeof toolsColorPickerRoute
   '/diff-checker': typeof toolsDiffCheckerRoute
+  '/fake-data-generator': typeof toolsFakeDataGeneratorRoute
   '/image-compressor': typeof toolsImageCompressorRoute
   '/image-cropper': typeof toolsImageCropperRoute
   '/image-palette-generator': typeof toolsImagePaletteGeneratorRoute
   '/lorem-ipsum': typeof toolsLoremIpsumRoute
   '/password-generator': typeof toolsPasswordGeneratorRoute
+  '/regex-tester': typeof toolsRegexTesterRoute
   '/text-case-converter': typeof toolsTextCaseConverterRoute
   '/unit-converter': typeof toolsUnitConverterRoute
   '/uuid-generator': typeof toolsUuidGeneratorRoute
@@ -125,11 +141,13 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/(tools)/color-picker': typeof toolsColorPickerRoute
   '/(tools)/diff-checker': typeof toolsDiffCheckerRoute
+  '/(tools)/fake-data-generator': typeof toolsFakeDataGeneratorRoute
   '/(tools)/image-compressor': typeof toolsImageCompressorRoute
   '/(tools)/image-cropper': typeof toolsImageCropperRoute
   '/(tools)/image-palette-generator': typeof toolsImagePaletteGeneratorRoute
   '/(tools)/lorem-ipsum': typeof toolsLoremIpsumRoute
   '/(tools)/password-generator': typeof toolsPasswordGeneratorRoute
+  '/(tools)/regex-tester': typeof toolsRegexTesterRoute
   '/(tools)/text-case-converter': typeof toolsTextCaseConverterRoute
   '/(tools)/unit-converter': typeof toolsUnitConverterRoute
   '/(tools)/uuid-generator': typeof toolsUuidGeneratorRoute
@@ -142,11 +160,13 @@ export interface FileRouteTypes {
     | '/'
     | '/color-picker'
     | '/diff-checker'
+    | '/fake-data-generator'
     | '/image-compressor'
     | '/image-cropper'
     | '/image-palette-generator'
     | '/lorem-ipsum'
     | '/password-generator'
+    | '/regex-tester'
     | '/text-case-converter'
     | '/unit-converter'
     | '/uuid-generator'
@@ -157,11 +177,13 @@ export interface FileRouteTypes {
     | '/'
     | '/color-picker'
     | '/diff-checker'
+    | '/fake-data-generator'
     | '/image-compressor'
     | '/image-cropper'
     | '/image-palette-generator'
     | '/lorem-ipsum'
     | '/password-generator'
+    | '/regex-tester'
     | '/text-case-converter'
     | '/unit-converter'
     | '/uuid-generator'
@@ -172,11 +194,13 @@ export interface FileRouteTypes {
     | '/'
     | '/(tools)/color-picker'
     | '/(tools)/diff-checker'
+    | '/(tools)/fake-data-generator'
     | '/(tools)/image-compressor'
     | '/(tools)/image-cropper'
     | '/(tools)/image-palette-generator'
     | '/(tools)/lorem-ipsum'
     | '/(tools)/password-generator'
+    | '/(tools)/regex-tester'
     | '/(tools)/text-case-converter'
     | '/(tools)/unit-converter'
     | '/(tools)/uuid-generator'
@@ -188,11 +212,13 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   toolsColorPickerRoute: typeof toolsColorPickerRoute
   toolsDiffCheckerRoute: typeof toolsDiffCheckerRoute
+  toolsFakeDataGeneratorRoute: typeof toolsFakeDataGeneratorRoute
   toolsImageCompressorRoute: typeof toolsImageCompressorRoute
   toolsImageCropperRoute: typeof toolsImageCropperRoute
   toolsImagePaletteGeneratorRoute: typeof toolsImagePaletteGeneratorRoute
   toolsLoremIpsumRoute: typeof toolsLoremIpsumRoute
   toolsPasswordGeneratorRoute: typeof toolsPasswordGeneratorRoute
+  toolsRegexTesterRoute: typeof toolsRegexTesterRoute
   toolsTextCaseConverterRoute: typeof toolsTextCaseConverterRoute
   toolsUnitConverterRoute: typeof toolsUnitConverterRoute
   toolsUuidGeneratorRoute: typeof toolsUuidGeneratorRoute
@@ -244,6 +270,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof toolsTextCaseConverterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(tools)/regex-tester': {
+      id: '/(tools)/regex-tester'
+      path: '/regex-tester'
+      fullPath: '/regex-tester'
+      preLoaderRoute: typeof toolsRegexTesterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/(tools)/password-generator': {
       id: '/(tools)/password-generator'
       path: '/password-generator'
@@ -279,6 +312,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof toolsImageCompressorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(tools)/fake-data-generator': {
+      id: '/(tools)/fake-data-generator'
+      path: '/fake-data-generator'
+      fullPath: '/fake-data-generator'
+      preLoaderRoute: typeof toolsFakeDataGeneratorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/(tools)/diff-checker': {
       id: '/(tools)/diff-checker'
       path: '/diff-checker'
@@ -300,11 +340,13 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   toolsColorPickerRoute: toolsColorPickerRoute,
   toolsDiffCheckerRoute: toolsDiffCheckerRoute,
+  toolsFakeDataGeneratorRoute: toolsFakeDataGeneratorRoute,
   toolsImageCompressorRoute: toolsImageCompressorRoute,
   toolsImageCropperRoute: toolsImageCropperRoute,
   toolsImagePaletteGeneratorRoute: toolsImagePaletteGeneratorRoute,
   toolsLoremIpsumRoute: toolsLoremIpsumRoute,
   toolsPasswordGeneratorRoute: toolsPasswordGeneratorRoute,
+  toolsRegexTesterRoute: toolsRegexTesterRoute,
   toolsTextCaseConverterRoute: toolsTextCaseConverterRoute,
   toolsUnitConverterRoute: toolsUnitConverterRoute,
   toolsUuidGeneratorRoute: toolsUuidGeneratorRoute,
