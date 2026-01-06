@@ -85,4 +85,16 @@ export default [
     icon: SolarIconSet.LockPassword,
     category: "utility",
   },
+  {
+    title: "Fake Data Generator",
+    route: "/fake-data-generator",
+    icon: SolarIconSet.Database,
+    category: "dev",
+  },
+  {
+    title: "Regex Tester",
+    route: "/regex-tester",
+    icon: SolarIconSet.Code,
+    category: "dev",
+  },
 ] satisfies Tool[];
