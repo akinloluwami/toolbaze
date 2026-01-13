@@ -24,6 +24,7 @@ import { Route as toolsImageCompressorRouteImport } from './routes/(tools)/image
 import { Route as toolsFakeDataGeneratorRouteImport } from './routes/(tools)/fake-data-generator'
 import { Route as toolsDiffCheckerRouteImport } from './routes/(tools)/diff-checker'
 import { Route as toolsColorPickerRouteImport } from './routes/(tools)/color-picker'
+import { Route as toolsColorCodeConverterRouteImport } from './routes/(tools)/color-code-converter'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -101,9 +102,15 @@ const toolsColorPickerRoute = toolsColorPickerRouteImport.update({
   path: '/color-picker',
   getParentRoute: () => rootRouteImport,
 } as any)
+const toolsColorCodeConverterRoute = toolsColorCodeConverterRouteImport.update({
+  id: '/(tools)/color-code-converter',
+  path: '/color-code-converter',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/color-code-converter': typeof toolsColorCodeConverterRoute
   '/color-picker': typeof toolsColorPickerRoute
   '/diff-checker': typeof toolsDiffCheckerRoute
   '/fake-data-generator': typeof toolsFakeDataGeneratorRoute
@@ -121,6 +128,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/color-code-converter': typeof toolsColorCodeConverterRoute
   '/color-picker': typeof toolsColorPickerRoute
   '/diff-checker': typeof toolsDiffCheckerRoute
   '/fake-data-generator': typeof toolsFakeDataGeneratorRoute
@@ -139,6 +147,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/(tools)/color-code-converter': typeof toolsColorCodeConverterRoute
   '/(tools)/color-picker': typeof toolsColorPickerRoute
   '/(tools)/diff-checker': typeof toolsDiffCheckerRoute
   '/(tools)/fake-data-generator': typeof toolsFakeDataGeneratorRoute
@@ -158,6 +167,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/color-code-converter'
     | '/color-picker'
     | '/diff-checker'
     | '/fake-data-generator'
@@ -175,6 +185,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/color-code-converter'
     | '/color-picker'
     | '/diff-checker'
     | '/fake-data-generator'
@@ -192,6 +203,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/(tools)/color-code-converter'
     | '/(tools)/color-picker'
     | '/(tools)/diff-checker'
     | '/(tools)/fake-data-generator'
@@ -210,6 +222,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  toolsColorCodeConverterRoute: typeof toolsColorCodeConverterRoute
   toolsColorPickerRoute: typeof toolsColorPickerRoute
   toolsDiffCheckerRoute: typeof toolsDiffCheckerRoute
   toolsFakeDataGeneratorRoute: typeof toolsFakeDataGeneratorRoute
@@ -333,11 +346,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof toolsColorPickerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(tools)/color-code-converter': {
+      id: '/(tools)/color-code-converter'
+      path: '/color-code-converter'
+      fullPath: '/color-code-converter'
+      preLoaderRoute: typeof toolsColorCodeConverterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  toolsColorCodeConverterRoute: toolsColorCodeConverterRoute,
   toolsColorPickerRoute: toolsColorPickerRoute,
   toolsDiffCheckerRoute: toolsDiffCheckerRoute,
   toolsFakeDataGeneratorRoute: toolsFakeDataGeneratorRoute,
