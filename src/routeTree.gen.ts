@@ -23,6 +23,7 @@ import { Route as toolsImageCropperRouteImport } from './routes/(tools)/image-cr
 import { Route as toolsImageCompressorRouteImport } from './routes/(tools)/image-compressor'
 import { Route as toolsFakeDataGeneratorRouteImport } from './routes/(tools)/fake-data-generator'
 import { Route as toolsDiffCheckerRouteImport } from './routes/(tools)/diff-checker'
+import { Route as toolsCronGeneratorRouteImport } from './routes/(tools)/cron-generator'
 import { Route as toolsColorPickerRouteImport } from './routes/(tools)/color-picker'
 
 const IndexRoute = IndexRouteImport.update({
@@ -96,6 +97,11 @@ const toolsDiffCheckerRoute = toolsDiffCheckerRouteImport.update({
   path: '/diff-checker',
   getParentRoute: () => rootRouteImport,
 } as any)
+const toolsCronGeneratorRoute = toolsCronGeneratorRouteImport.update({
+  id: '/(tools)/cron-generator',
+  path: '/cron-generator',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const toolsColorPickerRoute = toolsColorPickerRouteImport.update({
   id: '/(tools)/color-picker',
   path: '/color-picker',
@@ -105,6 +111,7 @@ const toolsColorPickerRoute = toolsColorPickerRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/color-picker': typeof toolsColorPickerRoute
+  '/cron-generator': typeof toolsCronGeneratorRoute
   '/diff-checker': typeof toolsDiffCheckerRoute
   '/fake-data-generator': typeof toolsFakeDataGeneratorRoute
   '/image-compressor': typeof toolsImageCompressorRoute
@@ -122,6 +129,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/color-picker': typeof toolsColorPickerRoute
+  '/cron-generator': typeof toolsCronGeneratorRoute
   '/diff-checker': typeof toolsDiffCheckerRoute
   '/fake-data-generator': typeof toolsFakeDataGeneratorRoute
   '/image-compressor': typeof toolsImageCompressorRoute
@@ -140,6 +148,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/(tools)/color-picker': typeof toolsColorPickerRoute
+  '/(tools)/cron-generator': typeof toolsCronGeneratorRoute
   '/(tools)/diff-checker': typeof toolsDiffCheckerRoute
   '/(tools)/fake-data-generator': typeof toolsFakeDataGeneratorRoute
   '/(tools)/image-compressor': typeof toolsImageCompressorRoute
@@ -159,6 +168,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/color-picker'
+    | '/cron-generator'
     | '/diff-checker'
     | '/fake-data-generator'
     | '/image-compressor'
@@ -176,6 +186,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/color-picker'
+    | '/cron-generator'
     | '/diff-checker'
     | '/fake-data-generator'
     | '/image-compressor'
@@ -193,6 +204,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/(tools)/color-picker'
+    | '/(tools)/cron-generator'
     | '/(tools)/diff-checker'
     | '/(tools)/fake-data-generator'
     | '/(tools)/image-compressor'
@@ -211,6 +223,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   toolsColorPickerRoute: typeof toolsColorPickerRoute
+  toolsCronGeneratorRoute: typeof toolsCronGeneratorRoute
   toolsDiffCheckerRoute: typeof toolsDiffCheckerRoute
   toolsFakeDataGeneratorRoute: typeof toolsFakeDataGeneratorRoute
   toolsImageCompressorRoute: typeof toolsImageCompressorRoute
@@ -326,6 +339,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof toolsDiffCheckerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(tools)/cron-generator': {
+      id: '/(tools)/cron-generator'
+      path: '/cron-generator'
+      fullPath: '/cron-generator'
+      preLoaderRoute: typeof toolsCronGeneratorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/(tools)/color-picker': {
       id: '/(tools)/color-picker'
       path: '/color-picker'
@@ -339,6 +359,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   toolsColorPickerRoute: toolsColorPickerRoute,
+  toolsCronGeneratorRoute: toolsCronGeneratorRoute,
   toolsDiffCheckerRoute: toolsDiffCheckerRoute,
   toolsFakeDataGeneratorRoute: toolsFakeDataGeneratorRoute,
   toolsImageCompressorRoute: toolsImageCompressorRoute,
