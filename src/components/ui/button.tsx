@@ -1,5 +1,5 @@
+import { cn } from "@/lib/utils";
 import React from "react";
-import classNames from "classnames";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
@@ -13,7 +13,7 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={classNames(
+      className={cn(
         "bg-black text-white py-2 px-4 rounded-lg transition-all",
         className
       )}

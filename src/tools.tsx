@@ -97,4 +97,10 @@ export default [
     icon: SolarIconSet.Code,
     category: "dev",
   },
+  {
+    title: "Cron Generator",
+    route: "/cron-generator",
+    icon: SolarIconSet.ClockCircle,
+    category: "dev",
+  },
 ] satisfies Tool[];
