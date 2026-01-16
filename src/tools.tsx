@@ -35,7 +35,7 @@ export default [
     title: "Lorem Ipsum Generator",
     route: "/lorem-ipsum",
     icon: SolarIconSet.TextField,
-    category: "video",
+    category: "text",
   },
   {
     title: "Word Counter",
