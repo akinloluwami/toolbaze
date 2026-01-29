@@ -1,7 +1,8 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { Upload, Loader2Icon, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { buildMimeMatcher } from "@/utils/build-mimetype-matcher";
 
 interface FileDropZoneProps {
   onFileSelect: (file: File) => void;
@@ -49,6 +50,41 @@ export const FileDropZone = ({
     [onFileSelect, maxSize],
   );
 
+  useEffect(() => {
+
+    const isSupportedMime = buildMimeMatcher(accept);
+
+    const handlePaste = (e: ClipboardEvent) => {
+      const items = e.clipboardData?.items
+
+      if (!items) return;
+
+      // Find the first image file in the clipboard
+      for (const item of items) {
+        if (isSupportedMime(item.type)) {
+          const file = item.getAsFile();
+          if (file) {
+            if (file.size > maxSize) {
+              alert(
+                `File is too large. Please select a file smaller than ${formatFileSize(maxSize)}.`,
+              );
+              return;
+            }
+            onFileSelect(file);
+            break;
+          }
+        }
+      }
+
+    };
+
+    window.addEventListener("paste", handlePaste);
+
+    return () => {
+      window.removeEventListener("paste", handlePaste);
+    };
+  }, [onFileSelect, accept, maxSize])
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept,
@@ -65,6 +101,7 @@ export const FileDropZone = ({
   const acceptedFormats = Object.keys(accept)
     .map((key) => key.split("/")[1]?.toUpperCase() || key)
     .join(", ");
+
 
   return (
     <div
