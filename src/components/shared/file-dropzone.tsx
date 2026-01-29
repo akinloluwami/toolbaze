@@ -64,6 +64,12 @@ export const FileDropZone = ({
         if (isSupportedMime(item.type)) {
           const file = item.getAsFile();
           if (file) {
+            if (file.size > maxSize) {
+              alert(
+                `File is too large. Please select a file smaller than ${formatFileSize(maxSize)}.`,
+              );
+              return;
+            }
             onFileSelect(file);
             break;
           }
@@ -77,7 +83,7 @@ export const FileDropZone = ({
     return () => {
       window.removeEventListener("paste", handlePaste);
     };
-  }, [])
+  }, [onFileSelect, accept, maxSize])
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
