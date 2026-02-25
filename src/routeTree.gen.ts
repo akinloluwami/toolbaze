@@ -16,6 +16,7 @@ import { Route as toolsUuidGeneratorRouteImport } from './routes/(tools)/uuid-ge
 import { Route as toolsUnitConverterRouteImport } from './routes/(tools)/unit-converter'
 import { Route as toolsTextCaseConverterRouteImport } from './routes/(tools)/text-case-converter'
 import { Route as toolsRegexTesterRouteImport } from './routes/(tools)/regex-tester'
+import { Route as toolsQrCodeGeneratorRouteImport } from './routes/(tools)/qr-code-generator'
 import { Route as toolsPasswordGeneratorRouteImport } from './routes/(tools)/password-generator'
 import { Route as toolsLoremIpsumRouteImport } from './routes/(tools)/lorem-ipsum'
 import { Route as toolsImagePaletteGeneratorRouteImport } from './routes/(tools)/image-palette-generator'
@@ -58,6 +59,11 @@ const toolsTextCaseConverterRoute = toolsTextCaseConverterRouteImport.update({
 const toolsRegexTesterRoute = toolsRegexTesterRouteImport.update({
   id: '/(tools)/regex-tester',
   path: '/regex-tester',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const toolsQrCodeGeneratorRoute = toolsQrCodeGeneratorRouteImport.update({
+  id: '/(tools)/qr-code-generator',
+  path: '/qr-code-generator',
   getParentRoute: () => rootRouteImport,
 } as any)
 const toolsPasswordGeneratorRoute = toolsPasswordGeneratorRouteImport.update({
@@ -112,6 +118,7 @@ export interface FileRoutesByFullPath {
   '/image-palette-generator': typeof toolsImagePaletteGeneratorRoute
   '/lorem-ipsum': typeof toolsLoremIpsumRoute
   '/password-generator': typeof toolsPasswordGeneratorRoute
+  '/qr-code-generator': typeof toolsQrCodeGeneratorRoute
   '/regex-tester': typeof toolsRegexTesterRoute
   '/text-case-converter': typeof toolsTextCaseConverterRoute
   '/unit-converter': typeof toolsUnitConverterRoute
@@ -129,6 +136,7 @@ export interface FileRoutesByTo {
   '/image-palette-generator': typeof toolsImagePaletteGeneratorRoute
   '/lorem-ipsum': typeof toolsLoremIpsumRoute
   '/password-generator': typeof toolsPasswordGeneratorRoute
+  '/qr-code-generator': typeof toolsQrCodeGeneratorRoute
   '/regex-tester': typeof toolsRegexTesterRoute
   '/text-case-converter': typeof toolsTextCaseConverterRoute
   '/unit-converter': typeof toolsUnitConverterRoute
@@ -147,6 +155,7 @@ export interface FileRoutesById {
   '/(tools)/image-palette-generator': typeof toolsImagePaletteGeneratorRoute
   '/(tools)/lorem-ipsum': typeof toolsLoremIpsumRoute
   '/(tools)/password-generator': typeof toolsPasswordGeneratorRoute
+  '/(tools)/qr-code-generator': typeof toolsQrCodeGeneratorRoute
   '/(tools)/regex-tester': typeof toolsRegexTesterRoute
   '/(tools)/text-case-converter': typeof toolsTextCaseConverterRoute
   '/(tools)/unit-converter': typeof toolsUnitConverterRoute
@@ -166,6 +175,7 @@ export interface FileRouteTypes {
     | '/image-palette-generator'
     | '/lorem-ipsum'
     | '/password-generator'
+    | '/qr-code-generator'
     | '/regex-tester'
     | '/text-case-converter'
     | '/unit-converter'
@@ -183,6 +193,7 @@ export interface FileRouteTypes {
     | '/image-palette-generator'
     | '/lorem-ipsum'
     | '/password-generator'
+    | '/qr-code-generator'
     | '/regex-tester'
     | '/text-case-converter'
     | '/unit-converter'
@@ -200,6 +211,7 @@ export interface FileRouteTypes {
     | '/(tools)/image-palette-generator'
     | '/(tools)/lorem-ipsum'
     | '/(tools)/password-generator'
+    | '/(tools)/qr-code-generator'
     | '/(tools)/regex-tester'
     | '/(tools)/text-case-converter'
     | '/(tools)/unit-converter'
@@ -218,6 +230,7 @@ export interface RootRouteChildren {
   toolsImagePaletteGeneratorRoute: typeof toolsImagePaletteGeneratorRoute
   toolsLoremIpsumRoute: typeof toolsLoremIpsumRoute
   toolsPasswordGeneratorRoute: typeof toolsPasswordGeneratorRoute
+  toolsQrCodeGeneratorRoute: typeof toolsQrCodeGeneratorRoute
   toolsRegexTesterRoute: typeof toolsRegexTesterRoute
   toolsTextCaseConverterRoute: typeof toolsTextCaseConverterRoute
   toolsUnitConverterRoute: typeof toolsUnitConverterRoute
@@ -275,6 +288,13 @@ declare module '@tanstack/react-router' {
       path: '/regex-tester'
       fullPath: '/regex-tester'
       preLoaderRoute: typeof toolsRegexTesterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(tools)/qr-code-generator': {
+      id: '/(tools)/qr-code-generator'
+      path: '/qr-code-generator'
+      fullPath: '/qr-code-generator'
+      preLoaderRoute: typeof toolsQrCodeGeneratorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/(tools)/password-generator': {
@@ -346,6 +366,7 @@ const rootRouteChildren: RootRouteChildren = {
   toolsImagePaletteGeneratorRoute: toolsImagePaletteGeneratorRoute,
   toolsLoremIpsumRoute: toolsLoremIpsumRoute,
   toolsPasswordGeneratorRoute: toolsPasswordGeneratorRoute,
+  toolsQrCodeGeneratorRoute: toolsQrCodeGeneratorRoute,
   toolsRegexTesterRoute: toolsRegexTesterRoute,
   toolsTextCaseConverterRoute: toolsTextCaseConverterRoute,
   toolsUnitConverterRoute: toolsUnitConverterRoute,
