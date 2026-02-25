@@ -80,6 +80,12 @@ export default [
     category: "utility",
   },
   {
+    title: "QR Code Generator",
+    route: "/qr-code-generator",
+    icon: SolarIconSet.QRCode,
+    category: "utility",
+  },
+  {
     title: "Password Generator",
     route: "/password-generator",
     icon: SolarIconSet.LockPassword,
