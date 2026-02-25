@@ -13,10 +13,10 @@ export const Route = createFileRoute("/(tools)/qr-code-generator")({
 
 type ErrorCorrectionLevel = "L" | "M" | "Q" | "H";
 const ERROR_LEVELS: ErrorCorrectionLevel[] = ["L", "M", "Q", "H"];
+const QR_SIZE = 320;
 
 function RouteComponent() {
   const [value, setValue] = useState("https://toolbaze.com");
-  const [size, setSize] = useState(320);
   const [margin, setMargin] = useState(2);
   const [foregroundColor, setForegroundColor] = useState("#000000");
   const [backgroundColor, setBackgroundColor] = useState("#ffffff");
@@ -29,8 +29,8 @@ function RouteComponent() {
 
   const qrOptions = useMemo<Options>(
     () => ({
-      width: size,
-      height: size,
+      width: QR_SIZE,
+      height: QR_SIZE,
       margin,
       type: "canvas",
       data: hasContent ? value : " ",
@@ -54,7 +54,6 @@ function RouteComponent() {
       },
     }),
     [
-      size,
       margin,
       hasContent,
       value,
@@ -83,7 +82,6 @@ function RouteComponent() {
 
   const handleReset = () => {
     setValue("https://toolbaze.com");
-    setSize(320);
     setMargin(2);
     setForegroundColor("#000000");
     setBackgroundColor("#ffffff");
@@ -105,16 +103,7 @@ function RouteComponent() {
               />
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4">
-              <NumberInput
-                label="Size (px)"
-                value={size}
-                onChange={(event) =>
-                  setSize(Math.min(1024, Math.max(128, parseInt(event.target.value) || 128)))
-                }
-                min={128}
-                max={1024}
-              />
+            <div className="w-full">
               <NumberInput
                 label="Margin"
                 value={margin}
@@ -176,12 +165,12 @@ function RouteComponent() {
         </div>
 
         <div className="lg:col-span-3">
-          <div className="p-8 rounded-2xl border border-gray-200 min-h-[520px] flex flex-col items-center justify-center text-center gap-6">
+          <div className="p-4 sm:p-6 lg:p-8 rounded-2xl border border-gray-200 min-h-[520px] flex flex-col items-center justify-center text-center gap-6 overflow-hidden">
             {hasContent ? (
               <>
                 <div
                   ref={qrContainerRef}
-                  className="w-full max-w-[360px] rounded-xl overflow-hidden border border-gray-100 bg-white flex items-center justify-center p-4"
+                  className="w-full max-w-[360px] rounded-xl overflow-hidden border border-gray-100 bg-white flex items-center justify-center p-4 [&_canvas]:max-w-full [&_canvas]:h-auto [&_svg]:max-w-full [&_svg]:h-auto"
                 />
                 <div className="flex flex-wrap gap-3 justify-center">
                   <DownloadButton onClick={downloadQrCode} disabled={!hasContent}>
